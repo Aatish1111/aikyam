@@ -2,9 +2,12 @@ import React,{useEffect} from 'react'
 import Login from './pages/Login/Login'
 import Signup from './pages/signup/Signup'
 import Home from './pages/Home/Home'
-import Chat from './components/chat/Chat'
+import HomeChat from "./pages/chat/HomeChat"
+import ChatPage from "./components/chatComponent/ChatPage"
+import socketIO from 'socket.io-client';
+import { useNavigate,Routes,Route} from 'react-router-dom';
+const socket = socketIO.connect('http://localhost:9000');
 
-import { useNavigate,Routes,Route} from 'react-router-dom'
 
 const App = () => {
   const navigate=useNavigate();
@@ -18,10 +21,11 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/chat" element={<Chat />}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/signup" element={<Signup/>}></Route>
         <Route path="/" element={<Home/>}></Route>
+        <Route path="/homechat" element={<HomeChat socket={socket} />}></Route>
+        <Route path="/chat" element={<ChatPage socket={socket} />}></Route>
       </Routes>
     </div>
   )

@@ -9,6 +9,7 @@
     border:1px solid black;
     width:30vw;
     padding:35px;
+    margin-bottom:10vh;
 }
 .login-input-box{
     display:flex;
