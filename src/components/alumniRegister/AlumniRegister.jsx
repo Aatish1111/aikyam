@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { app } from "../../utils/firebase/firebase.config";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { signInWithGooglePopup } from "../../utils/firebase/firebase.config";
 import "../../pages/Login/Login.css";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -44,12 +43,9 @@ const AlumniRegister = () => {
   const handleRegisterChange = (e) => {
     setUserRegister({ ...userRegister, [e.target.name]: e.target.value });
   };
-  const handlesignupwithGoogle = () => {
-    signInWithGooglePopup();
-    navigate("/");
-  };
   return (
     <div>
+      <h1>Alumni Registration</h1>
       <form onSubmit={handleRegisterSubmit}>
         <div className="login-input-box">
           <label>Enter your Name</label>
@@ -162,9 +158,6 @@ const AlumniRegister = () => {
           <button>Signup</button>
         </div>
       </form>
-      <div className="login-input-box">
-        <button onClick={handlesignupwithGoogle}>Sign up with Google</button>
-      </div>
       <div className="login-input-box" style={{ textAlign: "center" }}>
         <p>
           Already have an account !{" "}
