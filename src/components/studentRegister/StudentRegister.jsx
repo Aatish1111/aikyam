@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { app } from "../../utils/firebase/firebase.config";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -13,12 +13,30 @@ const StudentRegister = () => {
     name: "",
     email: "",
     password: "",
+    mobile: "",
+    gender: "",
+    qualification: "",
+    branch: "",
+    regdno: "",
+    pyear: "",
   });
-  const { name, email, password } = userRegister;
+  const {
+    name,
+    email,
+    password,
+    mobile,
+    gender,
+    qualification,
+    branch,
+    regdno,
+    pyear,
+  } = userRegister;
+  console.log("state", userRegister);
+
   const auth = getAuth();
   const handleRegisterSubmit = (e) => {
     e.preventDefault();
-    // console.log(userRegister);   
+    // console.log(userRegister);
     createUserWithEmailAndPassword(auth, email, password)
       .then((response) => {
         navigate("/");
@@ -28,11 +46,11 @@ const StudentRegister = () => {
         );
       })
       .catch((error) => {
-        if (error.code === 'auth/weak-password') {
-          toast.error('Password should be at least 6 characters');
+        if (error.code === "auth/weak-password") {
+          toast.error("Password should be at least 6 characters");
         }
-        if (error.code === 'auth/email-already-in-use') {
-          toast.error('Email Already in Use');
+        if (error.code === "auth/email-already-in-use") {
+          toast.error("Email Already in Use");
         }
       });
   };
@@ -87,19 +105,20 @@ const StudentRegister = () => {
 
         <div className="login-input-box">
           <label>Enter your Gender</label>
-          <select style={{height:'40px'}}
-            name='branch'
+          <select
+            style={{ height: "40px" }}
+            name="gender"
             required
-            value={userRegister.branch}
-            onChange={handleRegisterChange}>
+            value={userRegister.gender}
+            onChange={handleRegisterChange}
+          >
             <option>Select Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
-
         </div>
 
-        <div className="login-input-box">
+        {/* <div className="login-input-box">
           <label>Enter your Institution Name</label>
           <input
             type="text"
@@ -108,7 +127,7 @@ const StudentRegister = () => {
             value={userRegister.institution}
             onChange={handleRegisterChange}
           />
-        </div>
+        </div> */}
 
         <div className="login-input-box">
           <label>Enter your Qualification</label>
@@ -134,11 +153,13 @@ const StudentRegister = () => {
 
         <div className="login-input-box">
           <label>Enter your Branch</label>
-          <select style={{height:'40px'}}
-            name='branch'
+          <select
+            style={{ height: "40px" }}
+            name="branch"
             required
             value={userRegister.branch}
-            onChange={handleRegisterChange}>
+            onChange={handleRegisterChange}
+          >
             <option>Select Branch</option>
             <option value="CSE">CSE</option>
             <option value="IT">IT</option>
@@ -173,7 +194,7 @@ const StudentRegister = () => {
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default StudentRegister
+export default StudentRegister;
